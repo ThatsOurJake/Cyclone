@@ -1,0 +1,47 @@
+{
+  "name": "cyclone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./app/main.js",
+  "scripts": {
+    "start": "webpack && .\\node_modules\\.bin\\electron .",
+    "electron": "nodemon --watch ./app/main.js --exec .\\node_modules\\.bin\\electron .",
+    "dev": "cross-env START_HOT=1 NODE_ENV=development webpack-dev-server --progress --colors",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rd /s /q \"dist\"",
+    "build": "webpack",
+    "postbuild": "xcopy index.html dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "command-exists": "^1.2.2",
+    "electron": "^1.7.8",
+    "github": "^11.0.0",
+    "material-ui": "^1.0.0-beta.16",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-hot-loader": "^3.0.0-beta.7",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "simple-git": "^1.79.0",
+    "typeface-roboto": "0.0.35"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "devtron": "^1.4.0",
+    "electron-devtools-installer": "^2.2.0",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "global-npm": "^0.3.0",
+    "nodemon": "^1.12.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
