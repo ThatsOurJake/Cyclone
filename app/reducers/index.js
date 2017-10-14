@@ -1,9 +1,11 @@
-const { combineReducers } = require('redux');
+import { combineReducers } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 
-const gitReducer = require('./git-reducer');
+import gitReducer from './git-reducer';
+import repoReducer from './repo-reducer';
 
-const reducers = combineReducers({
-  git: gitReducer
+export default combineReducers({
+  git: gitReducer,
+  repos: repoReducer,
+  router: routerMiddleware
 });
-
-module.exports = reducers;

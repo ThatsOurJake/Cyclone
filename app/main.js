@@ -1,18 +1,24 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
-const url = require('url');
-const commandExistsSync = require('command-exists').sync;
-const { createStore } = require('redux');
-const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+import path from 'path';
+import { app, BrowserWindow } from 'electron';
+import url from 'url';
+import commandExistsSync from 'command-exists';
+import { createStore } from 'redux';
+import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 
-const reducers = require('./reducers');
-const { gitCommandDoesntExist, gitCommandExists} = require('./actions/git-actions');
+import reducers from './reducers';
+import { gitCommandDoesntExist, gitCommandExists } from './actions/git-actions';
+import { loadRepos, errorRepos } from './actions/repo-actions';
+import DB from './data';
+import * as dbUtils from './data/utils';
+import setupEvents from './events';
 
 let win;
 
-function createWindow() {
+const createWindow = async () => {
   win = new BrowserWindow({
+    minWidth: 640,
     width: 1100,
+    minHeight: 480,
     height: 680,
     title: "Cyclone"
   });
@@ -32,7 +38,13 @@ function createWindow() {
     store.dispatch(gitCommandDoesntExist());
   }
 
+  const repos = await dbUtils.findRepoDB({})
+    .catch(err => store.dispatch(errorRepos(err)));
+  store.dispatch(loadRepos(repos));
+
   win.__INITAL_STATE__ = store.getState();
+
+  setupEvents();
 
   win.loadURL('http://localhost:3000/');
 

@@ -2,6 +2,7 @@ const { spawn } = require('child_process');
 const npm = require('global-npm');
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -32,6 +33,13 @@ module.exports = {
         loader: [ 'style-loader', 'css-loader' ]
       },
       {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000'
       }
@@ -43,7 +51,8 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin('bundle.css')
   ],
   devServer: {
     host: 'localhost',

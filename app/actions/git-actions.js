@@ -1,20 +1,15 @@
-const { COMMAND_EXISTS } = require('../reducers/types');
+import { COMMAND_EXISTS } from '../reducers/types';
 
-function gitCommandExists() {
+export const gitCommandExists = () => {
   return {
     type: COMMAND_EXISTS,
     value: true
   };
 };
 
-function gitCommandDoesntExist() {
+export const gitCommandDoesntExist = () => {
   return {
     type: COMMAND_EXISTS,
     value: false
   };
 };
-
-module.exports = {
-  gitCommandDoesntExist,
-  gitCommandExists
-}

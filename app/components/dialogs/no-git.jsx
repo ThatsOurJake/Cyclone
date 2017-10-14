@@ -14,8 +14,8 @@ export default (props) => {
           To use this program you will need to install the Git command line tools. Install them and restart this application.
         </DialogContent>
         <DialogActions>
-          <Button color="primary" onClick={props.dialogRefuse}>No Thanks!</Button>
           <Button color="primary" onClick={props.dialogAccept}>Take me to the download!</Button>
+          <Button color="primary" onClick={props.dialogRefuse}>No Thanks!</Button>
         </DialogActions>
       </DialogContent>
     </Dialog>
