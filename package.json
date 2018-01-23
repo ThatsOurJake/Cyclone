@@ -17,7 +17,7 @@
   "dependencies": {
     "babel-register": "^6.26.0",
     "command-exists": "^1.2.2",
-    "electron": "^1.7.8",
+    "electron": "^1.7.11",
     "github": "^11.0.0",
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.16",
