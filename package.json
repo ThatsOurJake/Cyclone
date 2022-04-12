@@ -29,7 +29,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
-    "simple-git": "^1.79.0",
+    "simple-git": "^3.5.0",
     "typeface-roboto": "0.0.35"
   },
   "devDependencies": {
